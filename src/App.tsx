@@ -39,11 +39,11 @@ function App() {
             {id: v1(), title: "GraphQL", isDone: false},
         ],
         [todolistID2]:[
-            {id: v1(), title: "HTML&CSS2", isDone: true},
-            {id: v1(), title: "JS2", isDone: true},
-            {id: v1(), title: "ReactJS2", isDone: false},
-            {id: v1(), title: "Rest API2", isDone: false},
-            {id: v1(), title: "GraphQL2", isDone: false},
+            {id: v1(), title: "Books", isDone: true},
+            {id: v1(), title: "Eggs", isDone: true},
+            {id: v1(), title: "Milk", isDone: false},
+            {id: v1(), title: "Meat", isDone: false},
+            {id: v1(), title: "Rice", isDone: false},
         ]
     });
 
@@ -59,17 +59,7 @@ function App() {
     }
 
     function changeStatus(todolistId: string, taskId: string, isDone: boolean) {
-        setTasks({...tasks, [todolistId]: tasks[todolistId].map(task => task.id === taskId ? {...task, isDone: !isDone} : task)});
-    }
-
-
-    let tasksForTodolist = tasks;
-
-    if (filter === "active") {
-        tasksForTodolist = tasks.filter(t => t.isDone === false);
-    }
-    if (filter === "completed") {
-        tasksForTodolist = tasks.filter(t => t.isDone === true);
+        setTasks({...tasks, [todolistId]: tasks[todolistId].map(task => task.id === taskId ? {...task, isDone} : task)});
     }
 
     function changeFilter(value: FilterValuesType) {
@@ -82,7 +72,7 @@ function App() {
             {todolists.map(tl => (
                 <Todolist todolistId={tl.id}
                           title={tl.title}
-                          tasks={tasksForTodolist[tl.id]}
+                          tasks={tasks[tl.id]}
                           removeTask={removeTask}
                           changeFilter={changeFilter}
                           addTask={addTask}
