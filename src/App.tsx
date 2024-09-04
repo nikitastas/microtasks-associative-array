@@ -49,7 +49,7 @@ function App() {
 
 
     function removeTask(todolistId: string, id: string) {
-        let filteredTasks = tasks[todolistId].filter(t => t.id != id);
+        let filteredTasks = tasks[todolistId].filter(t => t.id !== id);
         setTasks({...tasks, [todolistId]: filteredTasks});
     }
 
@@ -65,7 +65,7 @@ function App() {
         <div className="App">
             {todolists.map(tl => (
                 <Todolist todolistId={tl.id}
-                          title={tl.title}
+                          titleForToDo={tl.title}
                           tasks={tasks[tl.id]}
                           removeTask={removeTask}
                           addTask={addTask}
